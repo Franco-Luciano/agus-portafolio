@@ -1,0 +1,944 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Agustina Passicot — Servicios digitales para inmobiliarias</title>
+    <style>
+      :root {
+        --bg: #efefef;
+        --paper: #f4efe8;
+        --card: #e9e3dd;
+        --taupe: #aba398;
+        --taupe-dark: #948c81;
+        --brown: #5c3d2d;
+        --brown-deep: #452d21;
+        --white: #ffffff;
+        --text: #4b3a31;
+        --text-soft: #7b6b62;
+        --line: rgba(92, 61, 45, 0.18);
+        --hero-overlay: rgba(91, 78, 66, 0.34);
+        --radius-xl: 34px;
+        --radius-lg: 26px;
+        --radius-md: 18px;
+        --container: 430px;
+        --shadow-soft: 0 16px 40px rgba(38, 29, 22, 0.08);
+      }
+
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        background: #1f1f22;
+        color: var(--text);
+        font-family:
+          "Be Vietnam Pro", "Poppins", "Questrial", Arial, sans-serif;
+        line-height: 1.45;
+        display: flex;
+        justify-content: center;
+        padding: 0;
+      }
+
+      img {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      ul {
+        padding-left: 1.2rem;
+      }
+
+      .site {
+        width: 100%;
+        max-width: var(--container);
+        background: var(--bg);
+        min-height: 100vh;
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04);
+      }
+
+      .section-tag {
+        font-size: 0.95rem;
+        line-height: 1;
+        text-transform: uppercase;
+        letter-spacing: 0.12em;
+        color: var(--brown-deep);
+        text-align: center;
+        margin-bottom: 1.25rem;
+        font-weight: 500;
+      }
+
+      .hero {
+        position: relative;
+        color: var(--white);
+        min-height: 100svh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+        isolation: isolate;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background:
+          linear-gradient(
+            to bottom,
+            rgba(32, 25, 20, 0.18),
+            rgba(32, 25, 20, 0.52)
+          ),
+          url("https://cdn.pixabay.com/photo/2016/11/29/03/53/architecture-1867187_1280.jpg")
+            center/cover no-repeat;
+        transform: scale(1.04);
+        z-index: -2;
+      }
+
+      .hero::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          to bottom,
+          rgba(171, 163, 152, 0.22),
+          rgba(92, 61, 45, 0.22)
+        );
+        backdrop-filter: blur(3px);
+        z-index: -1;
+      }
+
+      .hero-inner {
+        width: 100%;
+        padding: 2.2rem 1.15rem 2rem;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.4rem;
+      }
+
+      .pill {
+        border: 1px solid rgba(255, 255, 255, 0.74);
+        border-radius: 999px;
+        padding: 0.52rem 1.2rem;
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.9);
+        backdrop-filter: blur(10px);
+        background: rgba(255, 255, 255, 0.06);
+      }
+
+      .brand {
+        margin-top: 0.1rem;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+      }
+
+      .brand-logo {
+        width: min(100%, 270px);
+        height: auto;
+        display: block;
+        filter: drop-shadow(0 6px 18px rgba(0, 0, 0, 0.16));
+      }
+
+      .brand-logo svg {
+        display: block;
+        width: 100%;
+        height: auto;
+      }
+
+      .roles {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 0.75rem;
+        font-size: 0.78rem;
+        letter-spacing: 0.04em;
+        color: rgba(255, 255, 255, 0.92);
+        text-transform: none;
+      }
+
+      .roles span {
+        position: relative;
+        padding: 0 0.3rem;
+      }
+
+      .roles span:not(:last-child)::after {
+        content: "";
+        position: absolute;
+        right: -0.45rem;
+        top: 50%;
+        width: 1px;
+        height: 0.95rem;
+        transform: translateY(-50%);
+        background: rgba(255, 255, 255, 0.55);
+      }
+
+      .hero-title {
+        font-family: "Aristotelica Pro Text", Georgia, serif;
+        font-size: clamp(2.7rem, 8vw, 4.15rem);
+        line-height: 0.98;
+        max-width: 11ch;
+        letter-spacing: -0.03em;
+      }
+
+      .hero-copy {
+        max-width: 28ch;
+        width: 100%;
+        font-size: 0.95rem;
+        line-height: 1.6;
+        color: rgba(255, 255, 255, 0.95);
+        font-weight: 300;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 0.95rem;
+        width: 100%;
+        justify-content: center;
+        margin-top: 0.2rem;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        min-width: 150px;
+        border-radius: 18px;
+        padding: 0.95rem 1.05rem;
+        font-size: 0.96rem;
+        font-weight: 500;
+        border: 1px solid rgba(255, 255, 255, 0.72);
+        text-align: center;
+        transition: 0.25s ease;
+      }
+
+      .btn-primary {
+        background: rgba(74, 46, 26, 0.9);
+        border-color: rgba(74, 46, 26, 0.4);
+        color: var(--white);
+        box-shadow: 0 10px 30px rgba(42, 23, 11, 0.25);
+      }
+
+      .btn-secondary {
+        background: rgba(255, 255, 255, 0.08);
+        color: var(--white);
+        backdrop-filter: blur(8px);
+      }
+
+      .btn:hover {
+        transform: translateY(-2px);
+      }
+
+      .intro,
+      .why,
+      .services,
+      .templates,
+      .video,
+      .cta {
+        padding-inline: 1.1rem;
+      }
+
+      .intro {
+        background: #f5f5f5;
+        padding-top: 2rem;
+        padding-bottom: 2.6rem;
+        text-align: center;
+      }
+
+      .intro h2,
+      .why h2,
+      .templates h2,
+      .video h2,
+      .cta h2 {
+        font-family: "Be Vietnam Pro", "Poppins", sans-serif;
+        color: var(--brown-deep);
+        letter-spacing: -0.04em;
+        line-height: 0.98;
+      }
+
+      .intro h2 {
+        font-size: clamp(3rem, 9vw, 4rem);
+        margin-bottom: 1.2rem;
+        font-weight: 700;
+      }
+
+      .intro p {
+        font-size: 0.98rem;
+        line-height: 1.65;
+        color: #65574f;
+        max-width: 34ch;
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      .services {
+        padding-top: 0.4rem;
+        padding-bottom: 2.2rem;
+        display: grid;
+        gap: 2rem;
+      }
+
+      .service-card {
+        position: relative;
+        background: var(--card);
+        border: 1px solid rgba(132, 116, 104, 0.35);
+        border-radius: 28px;
+        padding: 3.9rem 1.45rem 1.6rem;
+        text-align: center;
+        box-shadow: 0 2px 0 rgba(255, 255, 255, 0.5) inset;
+      }
+
+      .service-icon {
+        position: absolute;
+        top: -1.7rem;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 82px;
+        height: 82px;
+        border-radius: 50%;
+        background: var(--taupe);
+        border: 6px solid var(--bg);
+        display: grid;
+        place-items: center;
+        font-size: 2rem;
+        color: var(--white);
+        box-shadow: var(--shadow-soft);
+      }
+
+      .service-card h3 {
+        font-size: 1.05rem;
+        line-height: 1.15;
+        color: var(--brown-deep);
+        margin-bottom: 0.9rem;
+        font-weight: 700;
+        font-family: "Be Vietnam Pro", "Poppins", sans-serif;
+      }
+
+      .service-card p {
+        font-size: 0.88rem;
+        line-height: 1.55;
+        color: #6d5d54;
+        margin-bottom: 1rem;
+      }
+
+      .service-card ul {
+        list-style: none;
+        padding-left: 0;
+        text-align: center;
+        color: var(--brown-deep);
+        font-size: 0.9rem;
+        line-height: 1.7;
+        max-width: 18rem;
+        margin: 0 auto;
+      }
+
+      .service-card li {
+        display: block;
+      }
+
+      .templates,
+      .video,
+      .cta {
+        background: var(--brown);
+        color: var(--white);
+      }
+
+      .templates {
+        padding-top: 2rem;
+        padding-bottom: 2.4rem;
+      }
+
+      .templates .section-tag,
+      .video .section-tag {
+        color: rgba(255, 255, 255, 0.95);
+      }
+
+      .templates h2,
+      .video h2 {
+        color: var(--white);
+        font-size: clamp(2.5rem, 8vw, 3.7rem);
+        margin-bottom: 1.8rem;
+        text-align: center;
+      }
+
+      .template-list {
+        display: grid;
+        gap: 1.6rem;
+      }
+
+      .template-item h3 {
+        font-size: 1rem;
+        font-weight: 400;
+        margin-bottom: 0.7rem;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        letter-spacing: 0.02em;
+      }
+
+      .template-item h3::after {
+        content: "";
+        height: 1px;
+        flex: 1;
+        background: rgba(255, 255, 255, 0.22);
+      }
+
+      .template-frame {
+        background: rgba(255, 255, 255, 0.04);
+        padding: 0.2rem;
+      }
+
+      .template-frame img {
+        aspect-ratio: 4 / 5.6;
+        object-fit: cover;
+        background: #c8c8c8;
+      }
+
+      .templates-copy {
+        text-align: center;
+        font-size: 0.98rem;
+        line-height: 1.75;
+        max-width: 35ch;
+        width: 100%;
+        margin: 1.7rem auto 0;
+        color: rgba(255, 255, 255, 0.95);
+      }
+
+      .templates-divider {
+        background: #f0ece6;
+        color: #2f231b;
+        margin-top: 1.4rem;
+        text-align: center;
+        padding: 0.45rem 0.8rem;
+        font-size: 0.9rem;
+        letter-spacing: 0.03em;
+      }
+
+      .video {
+        padding-top: 2rem;
+        padding-bottom: 2.4rem;
+      }
+
+      .video h2 {
+        text-align: left;
+        text-decoration: underline;
+        text-decoration-thickness: 1px;
+        text-underline-offset: 6px;
+        margin-bottom: 1.2rem;
+      }
+
+      .video-frame {
+        width: 78%;
+        margin: 0 auto;
+        background: rgba(255, 255, 255, 0.08);
+        padding: 0.25rem;
+      }
+
+      .video-frame img {
+        aspect-ratio: 9 / 16;
+        object-fit: cover;
+      }
+
+      .why {
+        background: #e7ddcf;
+        padding-top: 2.1rem;
+        padding-bottom: 2.8rem;
+        text-align: center;
+      }
+
+      .why h2 {
+        font-size: clamp(2.2rem, 8vw, 3.2rem);
+        margin-bottom: 1rem;
+        max-width: 16ch;
+        width: 100%;
+        margin-inline: auto;
+        font-weight: 700;
+      }
+
+      .why-intro {
+        font-size: 0.98rem;
+        line-height: 1.65;
+        max-width: 28ch;
+        width: 100%;
+        margin: 0 auto 1.7rem;
+        color: #72655c;
+      }
+
+      .reason-list {
+        display: grid;
+        gap: 1.2rem;
+        justify-items: center;
+      }
+
+      .reason {
+        --reason-size: min(82vw, 320px);
+        width: var(--reason-size);
+        height: var(--reason-size);
+        border-radius: 50%;
+        background: var(--taupe);
+        color: var(--white);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding: 1.2rem;
+        flex-shrink: 0;
+      }
+
+      .reason-icon {
+        font-size: 2rem;
+        margin-bottom: 0.8rem;
+      }
+
+      .reason h3 {
+        font-size: 1.1rem;
+        margin-bottom: 0.7rem;
+        font-weight: 700;
+        line-height: 1.2;
+        max-width: 24ch;
+        width: 100%;
+      }
+
+      .reason p {
+        font-size: 0.95rem;
+        line-height: 1.6;
+        max-width: 26ch;
+        width: 100%;
+        color: rgba(255, 255, 255, 0.95);
+        width: 100%;
+        color: rgba(255, 255, 255, 0.95);
+      }
+
+      .quote {
+        margin-top: 1.8rem;
+        font-family: "Questrial", "Poppins", sans-serif;
+        font-size: 1rem;
+        line-height: 1.6;
+        color: var(--brown-deep);
+        max-width: 28ch;
+        width: 100%;
+        margin-inline: auto;
+      }
+
+      .cta {
+        text-align: center;
+        padding-top: 2.4rem;
+        padding-bottom: 2.6rem;
+      }
+
+      .cta h2 {
+        color: var(--white);
+        font-family: "Aristotelica Pro Text", Georgia, serif;
+        font-size: clamp(2.8rem, 9vw, 4.2rem);
+        line-height: 0.96;
+        max-width: 8ch;
+        margin: 0 auto 1rem;
+        font-weight: 400;
+      }
+
+      .cta p {
+        font-size: 1rem;
+        line-height: 1.6;
+        max-width: 28ch;
+        width: 100%;
+        margin: 0 auto 1.2rem;
+        color: rgba(255, 255, 255, 0.94);
+      }
+
+      .footer-note {
+        font-size: 0.9rem;
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      @media (min-width: 600px) {
+        body {
+          padding: 1.2rem;
+        }
+
+        .site {
+          border-radius: 0;
+          overflow: hidden;
+        }
+
+        .hero-inner,
+        .intro,
+        .services,
+        .templates,
+        .video,
+        .why,
+        .cta {
+          padding-left: 1.5rem;
+          padding-right: 1.5rem;
+        }
+
+        .services {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (min-width: 900px) {
+        .site {
+          max-width: 1280px;
+        }
+
+        .hero {
+          min-height: 860px;
+        }
+
+        .hero-inner {
+          padding: 4rem 3rem;
+          gap: 1.6rem;
+        }
+
+        .hero-copy {
+          max-width: 31ch;
+          font-size: 1.05rem;
+        }
+
+        .hero-title {
+          max-width: 12ch;
+        }
+
+        .intro {
+          padding-top: 4rem;
+          padding-bottom: 4rem;
+        }
+
+        .intro p {
+          max-width: 28ch;
+          font-size: 1.15rem;
+        }
+
+        .services {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 3rem 2rem;
+          padding-bottom: 4rem;
+          padding-inline: 2rem;
+        }
+
+        .template-list {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+        .video-frame {
+          width: min(100%, 380px);
+        }
+
+        .reason-list {
+          grid-template-columns: repeat(2, minmax(280px, 1fr));
+          align-items: start;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main class="site">
+      <section class="hero">
+        <div class="hero-inner">
+          <div class="pill">Servicios Digitales para inmobiliarias</div>
+
+          <div class="brand" aria-label="Agustina Passicot">
+            <img class="brand-logo" src="logo.png" alt="Agustina Passicot" />
+          </div>
+
+          <div class="roles">
+            <span>Content Manager</span>
+            <span>Community manager</span>
+            <span>Diseñadora UX-UI</span>
+          </div>
+
+          <h1 class="hero-title">Tu marca es tu mejor propiedad</h1>
+
+          <p class="hero-copy">
+            Diseño, gestiono y construyo la identidad digital de tu inmobiliaria
+            en tus redes sociales — todo habla de ti.
+          </p>
+
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#disenos-plantillas"
+              >Ver catálogo</a
+            >
+            <a class="btn btn-secondary" href="#importancia"
+              >¿Por qué importa?</a
+            >
+          </div>
+        </div>
+      </section>
+
+      <section class="intro" id="catalogo">
+        <div class="section-tag">Catálogo</div>
+        <h2>Servicios</h2>
+        <p>
+          Cada servicio está diseñado para que tu inmobiliaria destaque, genere
+          confianza y convierta visitantes en clientes.
+        </p>
+      </section>
+
+      <section class="services" aria-label="Servicios principales">
+        <article class="service-card">
+          <div class="service-icon">🎨</div>
+          <h3>Rediseño de Marca</h3>
+          <p>
+            Renovamos la imagen de tu inmobiliaria para transmitir confianza,
+            profesionalismo y modernidad.
+          </p>
+          <ul>
+            <li>3 propuestas iniciales</li>
+            <li>Armonía visual</li>
+            <li>Tipografía personalizada</li>
+            <li>Manual de identidad</li>
+            <li>Contenido en alta a disposición</li>
+          </ul>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">✒️</div>
+          <h3>Diseño de Logotipo</h3>
+          <p>
+            Creamos logos memorables que representan la esencia y valores de tu
+            inmobiliaria.
+          </p>
+          <ul>
+            <li>3 propuestas iniciales</li>
+            <li>Revisiones ilimitadas</li>
+            <li>Archivos en alta calidad</li>
+            <li>Versiones para redes</li>
+          </ul>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">💧</div>
+          <h3>Marca de Agua</h3>
+          <p>
+            Protege tus fotografías de propiedades con marcas de agua elegantes
+            y discretas.
+          </p>
+          <ul>
+            <li>Diseño sutil y profesional</li>
+            <li>Múltiples formatos</li>
+            <li>Aplicación automática</li>
+            <li>Protección de marca</li>
+          </ul>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">◎</div>
+          <h3>Manejo de Instagram</h3>
+          <p>
+            Gestión completa de tu perfil de Instagram con contenido que atrae
+            compradores y vendedores.
+          </p>
+          <ul>
+            <li>Calendario de contenido</li>
+            <li>Diseño de publicaciones</li>
+            <li>Stories y Reels</li>
+            <li>Interacción con audiencia</li>
+          </ul>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">📷</div>
+          <h3>Fotografía Inmobiliaria</h3>
+          <p>
+            Edición profesional de fotos de propiedades para causar el mejor
+            impacto visual en tus listados.
+          </p>
+          <ul>
+            <li>Retoque de interiores</li>
+            <li>Corrección de color</li>
+            <li>HDR profesional</li>
+            <li>Fotos panorámicas</li>
+          </ul>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">▣</div>
+          <h3>Plantillas para Redes</h3>
+          <p>
+            Kits de plantillas editables para publicar propiedades de forma
+            atractiva y consistente.
+          </p>
+          <ul>
+            <li>Templates de Instagram</li>
+            <li>Historias destacadas</li>
+            <li>Portadas de Facebook</li>
+            <li>Flyers digitales</li>
+          </ul>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">📈</div>
+          <h3>Estrategia Digital</h3>
+          <p>
+            Planificación estratégica para posicionar tu inmobiliaria en el
+            mundo digital y captar más clientes.
+          </p>
+          <ul>
+            <li>Análisis de competencia</li>
+            <li>Plan de contenido</li>
+            <li>Métricas y reportes</li>
+            <li>Publicidad digital</li>
+          </ul>
+        </article>
+
+        <article class="service-card">
+          <div class="service-icon">🤖</div>
+          <h3>Creación con IA</h3>
+          <p>
+            Piezas visuales y recursos asistidos por inteligencia artificial
+            para acelerar entregas y sumar impacto.
+          </p>
+          <ul>
+            <li>Variantes visuales rápidas</li>
+            <li>Conceptos para campañas</li>
+            <li>Optimización de tiempos</li>
+            <li>Recursos para redes</li>
+          </ul>
+        </article>
+      </section>
+
+      <section class="templates" aria-labelledby="disenos-plantillas">
+        <div class="section-tag">Opciones</div>
+        <h2 id="disenos-plantillas">Diseños de plantillas</h2>
+
+        <div class="template-list">
+          <article class="template-item">
+            <h3>NY Bohemio</h3>
+            <div class="template-frame">
+              <img
+                src="https://cdn.pixabay.com/photo/2016/10/18/21/22/skyscrapers-1751228_1280.jpg"
+                alt="Plantilla NY Bohemio"
+              />
+            </div>
+          </article>
+
+          <article class="template-item">
+            <h3>Miami vibrante</h3>
+            <div class="template-frame">
+              <img
+                src="https://cdn.pixabay.com/photo/2018/01/12/16/31/home-3078896_1280.jpg"
+                alt="Plantilla Miami vibrante"
+              />
+            </div>
+          </article>
+
+          <article class="template-item">
+            <h3>ECO Green</h3>
+            <div class="template-frame">
+              <img
+                src="https://cdn.pixabay.com/photo/2016/11/29/03/53/architecture-1867187_1280.jpg"
+                alt="Plantilla Eco Green"
+              />
+            </div>
+          </article>
+
+          <article class="template-item">
+            <h3>HOME Scape</h3>
+            <div class="template-frame">
+              <img
+                src="https://cdn.pixabay.com/photo/2016/11/18/17/20/home-1836070_1280.jpg"
+                alt="Plantilla Home Scape"
+              />
+            </div>
+          </article>
+        </div>
+
+        <p class="templates-copy">
+          La primera impresión es decisiva y todo comienza en tu inmobiliaria.
+          Elevá la calidad de tus presentaciones, elegí el estilo que mejor te
+          represente y lográ que tus propiedades se destaquen en el mercado.
+        </p>
+
+        <div class="templates-divider">
+          Potencia tu marca a través del diseño
+        </div>
+      </section>
+
+      <section class="video" aria-labelledby="opciones-audiovisuales">
+        <div class="section-tag">Opciones audiovisuales</div>
+        <h2 id="opciones-audiovisuales">Diseño de videos</h2>
+        <div class="video-frame">
+          <img
+            src="https://cdn.pixabay.com/photo/2016/11/29/09/32/apartment-1867187_1280.jpg"
+            alt="Vista previa de video inmobiliario"
+          />
+        </div>
+      </section>
+
+      <section class="why" id="importancia">
+        <div class="section-tag">¿Por qué importa?</div>
+        <h2>La importancia de tu marca digital</h2>
+        <p class="why-intro">
+          Tu marca no es solo un logo. Es la percepción que cada cliente tiene
+          de tu negocio en cada punto de contacto digital.
+        </p>
+
+        <div class="reason-list">
+          <article class="reason">
+            <div class="reason-icon">🛡</div>
+            <h3>Confianza Profesional</h3>
+            <p>
+              Una marca sólida genera confianza inmediata. Los clientes eligen
+              inmobiliarias que se ven profesionales y consistentes en todos sus
+              canales.
+            </p>
+          </article>
+
+          <article class="reason">
+            <div class="reason-icon">↗</div>
+            <h3>Diferenciación</h3>
+            <p>
+              En un mercado saturado, tu imagen es lo primero que te separa de
+              la competencia. La marca correcta te hace memorable.
+            </p>
+          </article>
+
+          <article class="reason">
+            <div class="reason-icon">◉</div>
+            <h3>Fidelización</h3>
+            <p>
+              Una identidad coherente crea conexión emocional. Los clientes
+              regresan y te recomiendan cuando reconocen y confían en tu marca.
+            </p>
+          </article>
+
+          <article class="reason">
+            <div class="reason-icon">◌</div>
+            <h3>Visibilidad Digital</h3>
+            <p>
+              Las redes sociales y buscadores premian la consistencia visual.
+              Una marca bien gestionada atrae más tráfico orgánico.
+            </p>
+          </article>
+        </div>
+
+        <p class="quote">
+          "En bienes raíces, no vendes propiedades — vendes confianza. Tu marca
+          es la primera propiedad que el cliente visita."
+        </p>
+      </section>
+
+      <section class="cta">
+        <h2>¿Listo para transformar tu marca?</h2>
+        <p>Contáctanos y hagamos que tu inmobiliaria destaque.</p>
+        <div class="footer-note">
+          © 2026 — Servicios Digitales Inmobiliarios
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
