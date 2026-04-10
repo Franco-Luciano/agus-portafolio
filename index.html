@@ -313,9 +313,13 @@
         border: 6px solid var(--bg);
         display: grid;
         place-items: center;
-        font-size: 2rem;
-        color: var(--white);
         box-shadow: var(--shadow-soft);
+      }
+
+      .service-icon img {
+        width: 30px;
+        height: 30px;
+        object-fit: contain;
       }
 
       .service-card h3 {
@@ -379,6 +383,82 @@
         gap: 1.6rem;
       }
 
+      .template-carousel {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .template-track {
+        display: flex;
+        transition: transform 0.35s ease;
+        will-change: transform;
+      }
+
+      .template-slide {
+        min-width: 100%;
+        flex: 0 0 100%;
+      }
+
+      .template-slide img {
+        aspect-ratio: 4 / 5.6;
+        object-fit: cover;
+        background: #c8c8c8;
+      }
+
+      .template-nav {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 45px;
+        height: 45px;
+        border: none;
+        border-radius: 50%;
+        display: grid;
+        place-items: center;
+        background: #f0ece6;
+        color: var(--brown-deep);
+        cursor: pointer;
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.18);
+        z-index: 2;
+      }
+
+      .template-nav svg {
+        width: 22px;
+        height: 22px;
+        stroke: var(--brown-deep);
+        stroke-width: 3;
+        fill: none;
+      }
+
+      .template-nav.prev {
+        left: 0.7rem;
+      }
+
+      .template-nav.next {
+        right: 0.7rem;
+      }
+
+      .template-dots {
+        display: flex;
+        justify-content: center;
+        gap: 0.45rem;
+        margin-top: 0.8rem;
+      }
+
+      .template-dot {
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.28);
+        border: none;
+        padding: 0;
+        cursor: pointer;
+      }
+
+      .template-dot.active {
+        background: rgba(255, 255, 255, 0.9);
+      }
+
       .template-item h3 {
         font-size: 1rem;
         font-weight: 400;
@@ -399,12 +479,6 @@
       .template-frame {
         background: rgba(255, 255, 255, 0.04);
         padding: 0.2rem;
-      }
-
-      .template-frame img {
-        aspect-ratio: 4 / 5.6;
-        object-fit: cover;
-        background: #c8c8c8;
       }
 
       .templates-copy {
@@ -690,7 +764,9 @@
 
       <section class="services" aria-label="Servicios principales">
         <article class="service-card">
-          <div class="service-icon">🎨</div>
+          <div class="service-icon">
+            <img src="ser1image.png" alt="icono rediseño" />
+          </div>
           <h3>Rediseño de Marca</h3>
           <p>
             Renovamos la imagen de tu inmobiliaria para transmitir confianza,
@@ -706,7 +782,9 @@
         </article>
 
         <article class="service-card">
-          <div class="service-icon">✒️</div>
+          <div class="service-icon">
+            <img src="ser2image.png" alt="icono logotipo" />
+          </div>
           <h3>Diseño de Logotipo</h3>
           <p>
             Creamos logos memorables que representan la esencia y valores de tu
@@ -721,7 +799,9 @@
         </article>
 
         <article class="service-card">
-          <div class="service-icon">💧</div>
+          <div class="service-icon">
+            <img src="ser3image.png" alt="icono marca de agua" />
+          </div>
           <h3>Marca de Agua</h3>
           <p>
             Protege tus fotografías de propiedades con marcas de agua elegantes
@@ -736,7 +816,9 @@
         </article>
 
         <article class="service-card">
-          <div class="service-icon">◎</div>
+          <div class="service-icon">
+            <img src="ser4image.png" alt="icono instagram" />
+          </div>
           <h3>Manejo de Instagram</h3>
           <p>
             Gestión completa de tu perfil de Instagram con contenido que atrae
@@ -751,7 +833,9 @@
         </article>
 
         <article class="service-card">
-          <div class="service-icon">📷</div>
+          <div class="service-icon">
+            <img src="ser5image.png" alt="icono fotografia" />
+          </div>
           <h3>Fotografía Inmobiliaria</h3>
           <p>
             Edición profesional de fotos de propiedades para causar el mejor
@@ -766,7 +850,9 @@
         </article>
 
         <article class="service-card">
-          <div class="service-icon">▣</div>
+          <div class="service-icon">
+            <img src="ser6image.png" alt="icono plantillas" />
+          </div>
           <h3>Plantillas para Redes</h3>
           <p>
             Kits de plantillas editables para publicar propiedades de forma
@@ -781,7 +867,9 @@
         </article>
 
         <article class="service-card">
-          <div class="service-icon">📈</div>
+          <div class="service-icon">
+            <img src="ser7image.png" alt="icono estrategia" />
+          </div>
           <h3>Estrategia Digital</h3>
           <p>
             Planificación estratégica para posicionar tu inmobiliaria en el
@@ -794,68 +882,13 @@
             <li>Publicidad digital</li>
           </ul>
         </article>
-
-        <article class="service-card">
-          <div class="service-icon">🤖</div>
-          <h3>Creación con IA</h3>
-          <p>
-            Piezas visuales y recursos asistidos por inteligencia artificial
-            para acelerar entregas y sumar impacto.
-          </p>
-          <ul>
-            <li>Variantes visuales rápidas</li>
-            <li>Conceptos para campañas</li>
-            <li>Optimización de tiempos</li>
-            <li>Recursos para redes</li>
-          </ul>
-        </article>
       </section>
 
       <section class="templates" aria-labelledby="disenos-plantillas">
         <div class="section-tag">Opciones</div>
         <h2 id="disenos-plantillas">Diseños de plantillas</h2>
 
-        <div class="template-list">
-          <article class="template-item">
-            <h3>NY Bohemio</h3>
-            <div class="template-frame">
-              <img
-                src="https://cdn.pixabay.com/photo/2016/10/18/21/22/skyscrapers-1751228_1280.jpg"
-                alt="Plantilla NY Bohemio"
-              />
-            </div>
-          </article>
-
-          <article class="template-item">
-            <h3>Miami vibrante</h3>
-            <div class="template-frame">
-              <img
-                src="https://cdn.pixabay.com/photo/2018/01/12/16/31/home-3078896_1280.jpg"
-                alt="Plantilla Miami vibrante"
-              />
-            </div>
-          </article>
-
-          <article class="template-item">
-            <h3>ECO Green</h3>
-            <div class="template-frame">
-              <img
-                src="https://cdn.pixabay.com/photo/2016/11/29/03/53/architecture-1867187_1280.jpg"
-                alt="Plantilla Eco Green"
-              />
-            </div>
-          </article>
-
-          <article class="template-item">
-            <h3>HOME Scape</h3>
-            <div class="template-frame">
-              <img
-                src="https://cdn.pixabay.com/photo/2016/11/18/17/20/home-1836070_1280.jpg"
-                alt="Plantilla Home Scape"
-              />
-            </div>
-          </article>
-        </div>
+        <div class="template-list" id="template-list"></div>
 
         <p class="templates-copy">
           La primera impresión es decisiva y todo comienza en tu inmobiliaria.
@@ -940,5 +973,203 @@
         </div>
       </section>
     </main>
+
+    <script>
+      const templateCarousels = [
+        {
+          title: "NY Bohemio",
+          images: [
+            {
+              src: "carrousel-images/7.png",
+              alt: "Plantilla NY Bohemio 1",
+            },
+            {
+              src: "carrousel-images/8.png",
+              alt: "Plantilla NY Bohemio 2",
+            },
+          ],
+        },
+        {
+          title: "Miami vibrante",
+          images: [
+            {
+              src: "carrousel-images/1.png",
+              alt: "Plantilla Miami vibrante 1",
+            },
+            {
+              src: "carrousel-images/2.png",
+              alt: "Plantilla Miami vibrante 2",
+            },
+          ],
+        },
+        {
+          title: "ECO Green",
+          images: [
+            {
+              src: "carrousel-images/5.png",
+              alt: "Plantilla ECO Green 1",
+            },
+            {
+              src: "carrousel-images/6.png",
+              alt: "Plantilla ECO Green 2",
+            },
+          ],
+        },
+        {
+          title: "HOME Scape",
+          images: [
+            {
+              src: "carrousel-images/3.png",
+              alt: "Plantilla HOME Scape 1",
+            },
+            {
+              src: "carrousel-images/4.png",
+              alt: "Plantilla HOME Scape 2",
+            },
+          ],
+        },
+        {
+          title: "DREAM Keys",
+          images: [
+            {
+              src: "carrousel-images/15.png",
+              alt: "Plantilla HOME Scape 1",
+            },
+            {
+              src: "carrousel-images/16.png",
+              alt: "Plantilla HOME Scape 2",
+            },
+          ],
+        },
+        {
+          title: "HABITAT Grid",
+          images: [
+            {
+              src: "carrousel-images/13.png",
+              alt: "Plantilla HOME Scape 1",
+            },
+            {
+              src: "carrousel-images/14.png",
+              alt: "Plantilla HOME Scape 2",
+            },
+          ],
+        },
+        {
+          title: "TERRANOVA",
+          images: [
+            {
+              src: "carrousel-images/11.png",
+              alt: "Plantilla HOME Scape 1",
+            },
+            {
+              src: "carrousel-images/12.png",
+              alt: "Plantilla HOME Scape 2",
+            },
+          ],
+        },
+        {
+          title: "URBAN Crown",
+          images: [
+            {
+              src: "carrousel-images/9.png",
+              alt: "Plantilla HOME Scape 1",
+            },
+            {
+              src: "carrousel-images/10.png",
+              alt: "Plantilla HOME Scape 2",
+            },
+          ],
+        },
+      ];
+
+      const templateList = document.getElementById("template-list");
+
+      function renderTemplateCarousels() {
+        templateList.innerHTML = templateCarousels
+          .map(
+            (carousel, index) => `
+        <article class="template-item">
+          <h3>${carousel.title}</h3>
+          <div class="template-frame">
+            <div class="template-carousel" data-carousel-index="${index}">
+              <button class="template-nav prev" type="button" aria-label="Imagen anterior">
+                <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>
+              </button>
+              <div class="template-track">
+                ${carousel.images
+                  .map(
+                    (image) => `
+                  <div class="template-slide">
+                    <img src="${image.src}" alt="${image.alt}" />
+                  </div>
+                `,
+                  )
+                  .join("")}
+              </div>
+              <button class="template-nav next" type="button" aria-label="Imagen siguiente">
+                <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+              </button>
+            </div>
+            <div class="template-dots">
+              ${carousel.images
+                .map(
+                  (_, imageIndex) => `
+                <button class="template-dot ${imageIndex === 0 ? "active" : ""}" type="button" data-dot-index="${imageIndex}" aria-label="Ir a imagen ${imageIndex + 1}"></button>
+              `,
+                )
+                .join("")}
+            </div>
+          </div>
+        </article>
+      `,
+          )
+          .join("");
+
+        const carouselStates = templateCarousels.map(() => 0);
+        const carouselElements =
+          document.querySelectorAll(".template-carousel");
+
+        function updateCarousel(carouselIndex) {
+          const carousel = carouselElements[carouselIndex];
+          const track = carousel.querySelector(".template-track");
+          const dots = carousel.parentElement.querySelectorAll(".template-dot");
+          track.style.transform = `translateX(-${carouselStates[carouselIndex] * 100}%)`;
+          dots.forEach((dot, dotIndex) => {
+            dot.classList.toggle(
+              "active",
+              dotIndex === carouselStates[carouselIndex],
+            );
+          });
+        }
+
+        carouselElements.forEach((carousel, carouselIndex) => {
+          const prevButton = carousel.querySelector(".prev");
+          const nextButton = carousel.querySelector(".next");
+          const dots = carousel.parentElement.querySelectorAll(".template-dot");
+          const imageCount = templateCarousels[carouselIndex].images.length;
+
+          prevButton.addEventListener("click", () => {
+            carouselStates[carouselIndex] =
+              (carouselStates[carouselIndex] - 1 + imageCount) % imageCount;
+            updateCarousel(carouselIndex);
+          });
+
+          nextButton.addEventListener("click", () => {
+            carouselStates[carouselIndex] =
+              (carouselStates[carouselIndex] + 1) % imageCount;
+            updateCarousel(carouselIndex);
+          });
+
+          dots.forEach((dot, dotIndex) => {
+            dot.addEventListener("click", () => {
+              carouselStates[carouselIndex] = dotIndex;
+              updateCarousel(carouselIndex);
+            });
+          });
+        });
+      }
+
+      renderTemplateCarousels();
+    </script>
   </body>
 </html>
