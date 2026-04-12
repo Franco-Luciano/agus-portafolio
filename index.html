@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="favico.ico" />
     <title>Agustina Passicot — Servicios digitales para inmobiliarias</title>
     <style>
       :root {
@@ -197,7 +198,7 @@
       }
 
       .hero-copy {
-        max-width: 34ch;
+        max-width: 30ch;
         width: 100%;
         font-size: 0.95rem;
         line-height: 1.6;
@@ -247,6 +248,7 @@
       .services,
       .templates,
       .video,
+      .before-after,
       .cta {
         padding-inline: 1.1rem;
       }
@@ -355,6 +357,7 @@
 
       .templates,
       .video,
+      .before-after,
       .cta {
         background: var(--brown);
         color: var(--white);
@@ -366,12 +369,14 @@
       }
 
       .templates .section-tag,
-      .video .section-tag {
+      .video .section-tag,
+      .before-after .section-tag {
         color: rgba(255, 255, 255, 0.95);
       }
 
       .templates h2,
-      .video h2 {
+      .video h2,
+      .before-after h2 {
         color: var(--white);
         font-size: clamp(2.5rem, 8vw, 3.7rem);
         margin-bottom: 1.8rem;
@@ -436,6 +441,21 @@
       .lightbox video {
         display: none;
         background: #000;
+      }
+
+      .lightbox-before-after {
+        display: none;
+        position: relative;
+        width: min(92vw, 900px);
+        height: min(92vw, 900px);
+        aspect-ratio: 1 / 1;
+        background: #000;
+        margin: auto;
+        overflow: hidden;
+      }
+
+      .lightbox-before-after.active {
+        display: block;
       }
 
       .lightbox-nav {
@@ -573,7 +593,8 @@
         padding-bottom: 2.4rem;
       }
 
-      .video h2 {
+      .video h2,
+      .before-after h2 {
         text-align: left;
         text-decoration: underline;
         text-decoration-thickness: 1px;
@@ -581,30 +602,34 @@
         margin-bottom: 1.2rem;
       }
 
-      .video-frame {
+      .video-frame,
+      .before-after-frame {
         width: 78%;
         margin: 0 auto;
         background: rgba(255, 255, 255, 0.08);
         padding: 0.25rem;
       }
 
-      .video-carousel {
+      .video-carousel,
+      .before-after-carousel {
         position: relative;
         overflow: hidden;
-        aspect-ratio: 9 / 16;
+        aspect-ratio: 1 / 1;
       }
 
-      .video-track {
+      .video-track,
+      .before-after-track {
         display: flex;
         transition: transform 0.35s ease;
         will-change: transform;
         height: 100%;
       }
 
-      .video-slide {
+      .video-slide,
+      .before-after-slide {
         min-width: 100%;
         flex: 0 0 100%;
-        aspect-ratio: 9 / 16;
+        aspect-ratio: 1 / 1;
       }
 
       .video-slide video {
@@ -616,14 +641,139 @@
         background: #000;
       }
 
-      .video-dots {
+      .before-after {
+        padding-top: 2rem;
+        padding-bottom: 2.4rem;
+      }
+
+      .before-after-compare {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #000;
+        user-select: none;
+        touch-action: none;
+        cursor: ew-resize;
+      }
+
+      .before-after-base,
+      .before-after-overlay {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+      }
+
+      .before-after-base img,
+      .before-after-overlay img {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        object-position: center;
+        transform: translate(-50%, -50%);
+        display: block;
+        pointer-events: none;
+        background: #000;
+      }
+
+      .before-after-overlay {
+        width: 100%;
+        overflow: hidden;
+        clip-path: inset(0 50% 0 0);
+      }
+
+      .before-after-divider {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 50%;
+        width: 2px;
+        background: rgba(255, 255, 255, 0.9);
+        transform: translateX(-50%);
+        pointer-events: none;
+      }
+
+      .before-after-handle {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 50px;
+        height: 50px;
+        transform: translate(-50%, -50%);
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.95);
+        border: 4px solid #fff;
+        box-shadow: 0 10px 22px rgba(0, 0, 0, 0.18);
+        display: grid;
+        place-items: center;
+        pointer-events: none;
+      }
+
+      .before-after-handle::before,
+      .before-after-handle::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        width: 6px;
+        height: 9999px;
+        margin-left: -3px;
+        background: #fff;
+        z-index: -1;
+      }
+
+      .before-after-handle::before {
+        top: 100%;
+      }
+
+      .before-after-handle::after {
+        bottom: 100%;
+      }
+
+      .before-after-handle svg {
+        width: 20px;
+        height: 20px;
+        stroke: var(--brown-deep);
+        stroke-width: 2.6;
+        fill: none;
+      }
+
+      .before-after-label {
+        position: absolute;
+        top: 0.8rem;
+        padding: 0.35rem 0.7rem;
+        font-size: 0.7rem;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        color: rgba(255, 255, 255, 0.95);
+        background: rgba(0, 0, 0, 0.28);
+        border-radius: 999px;
+        pointer-events: none;
+        z-index: 2;
+      }
+
+      .before-after-label.before {
+        left: 0.8rem;
+      }
+
+      .before-after-label.after {
+        right: 0.8rem;
+      }
+
+      .video-dots,
+      .before-after-dots {
         display: flex;
         justify-content: center;
         gap: 0.45rem;
         margin-top: 0.8rem;
+        flex-wrap: wrap;
       }
 
-      .video-dot {
+      .video-dot,
+      .before-after-dot {
         width: 8px;
         height: 8px;
         border-radius: 50%;
@@ -633,7 +783,8 @@
         cursor: pointer;
       }
 
-      .video-dot.active {
+      .video-dot.active,
+      .before-after-dot.active {
         background: rgba(255, 255, 255, 0.9);
       }
 
@@ -656,7 +807,7 @@
       .why-intro {
         font-size: 0.98rem;
         line-height: 1.65;
-        max-width: 34ch;
+        max-width: 30ch;
         width: 100%;
         margin: 0 auto 1.7rem;
         color: #72655c;
@@ -719,7 +870,7 @@
         font-size: 1rem;
         line-height: 1.6;
         color: var(--brown-deep);
-        max-width: 34ch;
+        max-width: 30ch;
         width: 100%;
         margin-inline: auto;
       }
@@ -743,7 +894,7 @@
       .cta p {
         font-size: 1rem;
         line-height: 1.6;
-        max-width: 34ch;
+        max-width: 30ch;
         width: 100%;
         margin: 0 auto 1.2rem;
         color: rgba(255, 255, 255, 0.94);
@@ -769,6 +920,7 @@
         .services,
         .templates,
         .video,
+        .before-after,
         .why,
         .cta {
           padding-left: 1.5rem;
@@ -809,7 +961,7 @@
         }
 
         .intro p {
-          max-width: 34ch;
+          max-width: 30ch;
           font-size: 1.15rem;
         }
 
@@ -1048,6 +1200,37 @@
         </div>
       </section>
 
+      <section class="before-after" aria-labelledby="embellecimiento-imagen">
+        <div class="section-tag">Opciones audiovisuales</div>
+        <h2 id="embellecimiento-imagen">Embellecimiento de imagen</h2>
+        <div class="before-after-frame">
+          <div class="before-after-carousel" id="before-after-carousel">
+            <button
+              class="template-nav prev"
+              id="before-after-prev"
+              type="button"
+              aria-label="Imagen comparativa anterior"
+            >
+              <svg viewBox="0 0 24 24">
+                <polyline points="15 18 9 12 15 6" />
+              </svg>
+            </button>
+            <div class="before-after-track" id="before-after-track"></div>
+            <button
+              class="template-nav next"
+              id="before-after-next"
+              type="button"
+              aria-label="Imagen comparativa siguiente"
+            >
+              <svg viewBox="0 0 24 24">
+                <polyline points="9 18 15 12 9 6" />
+              </svg>
+            </button>
+          </div>
+          <div class="before-after-dots" id="before-after-dots"></div>
+        </div>
+      </section>
+
       <section class="why" id="importancia">
         <div class="section-tag">¿Por qué importa?</div>
         <h2>La importancia de tu marca digital</h2>
@@ -1122,6 +1305,29 @@
       <span class="lightbox-close" id="lightbox-close">×</span>
       <img id="lightbox-img" src="" alt="" />
       <video id="lightbox-video" controls playsinline></video>
+      <div class="lightbox-before-after" id="lightbox-before-after">
+        <div
+          class="before-after-compare"
+          id="lightbox-before-after-compare"
+          data-position="50"
+        >
+          <div class="before-after-base">
+            <img id="lightbox-before-img" src="" alt="" />
+          </div>
+          <div class="before-after-overlay">
+            <img id="lightbox-after-img" src="" alt="" />
+          </div>
+          <div class="before-after-divider"></div>
+          <div class="before-after-handle" aria-hidden="true">
+            <svg viewBox="0 0 24 24">
+              <polyline points="10 7 5 12 10 17" />
+              <polyline points="14 7 19 12 14 17" />
+            </svg>
+          </div>
+          <span class="before-after-label before">Before</span>
+          <span class="before-after-label after">After</span>
+        </div>
+      </div>
     </div>
 
     <script>
@@ -1129,14 +1335,8 @@
         {
           title: "NY Bohemio",
           images: [
-            {
-              src: "carrousel-images/7.png",
-              alt: "Plantilla NY Bohemio 1",
-            },
-            {
-              src: "carrousel-images/8.png",
-              alt: "Plantilla NY Bohemio 2",
-            },
+            { src: "carrousel-images/7.png", alt: "Plantilla NY Bohemio 1" },
+            { src: "carrousel-images/8.png", alt: "Plantilla NY Bohemio 2" },
           ],
         },
         {
@@ -1155,101 +1355,59 @@
         {
           title: "ECO Green",
           images: [
-            {
-              src: "carrousel-images/5.png",
-              alt: "Plantilla ECO Green 1",
-            },
-            {
-              src: "carrousel-images/6.png",
-              alt: "Plantilla ECO Green 2",
-            },
+            { src: "carrousel-images/5.png", alt: "Plantilla ECO Green 1" },
+            { src: "carrousel-images/6.png", alt: "Plantilla ECO Green 2" },
           ],
         },
         {
           title: "HOME Scape",
           images: [
-            {
-              src: "carrousel-images/3.png",
-              alt: "Plantilla HOME Scape 1",
-            },
-            {
-              src: "carrousel-images/4.png",
-              alt: "Plantilla HOME Scape 2",
-            },
+            { src: "carrousel-images/3.png", alt: "Plantilla HOME Scape 1" },
+            { src: "carrousel-images/4.png", alt: "Plantilla HOME Scape 2" },
           ],
         },
         {
           title: "DREAM Keys",
           images: [
-            {
-              src: "carrousel-images/15.png",
-              alt: "Plantilla DREAM Keys 1",
-            },
-            {
-              src: "carrousel-images/16.png",
-              alt: "Plantilla DREAM Keys 2",
-            },
+            { src: "carrousel-images/15.png", alt: "Plantilla DREAM Keys 1" },
+            { src: "carrousel-images/16.png", alt: "Plantilla DREAM Keys 2" },
           ],
         },
         {
           title: "HABITAT Grid",
           images: [
-            {
-              src: "carrousel-images/13.png",
-              alt: "Plantilla HABITAT Grid 1",
-            },
-            {
-              src: "carrousel-images/14.png",
-              alt: "Plantilla HABITAT Grid 2",
-            },
+            { src: "carrousel-images/13.png", alt: "Plantilla HABITAT Grid 1" },
+            { src: "carrousel-images/14.png", alt: "Plantilla HABITAT Grid 2" },
           ],
         },
         {
           title: "TERRANOVA",
           images: [
-            {
-              src: "carrousel-images/11.png",
-              alt: "Plantilla TERRANOVA 1",
-            },
-            {
-              src: "carrousel-images/12.png",
-              alt: "Plantilla TERRANOVA 2",
-            },
+            { src: "carrousel-images/11.png", alt: "Plantilla TERRANOVA 1" },
+            { src: "carrousel-images/12.png", alt: "Plantilla TERRANOVA 2" },
           ],
         },
         {
           title: "URBAN Crown",
           images: [
-            {
-              src: "carrousel-images/9.png",
-              alt: "Plantilla URBAN Crown 1",
-            },
-            {
-              src: "carrousel-images/10.png",
-              alt: "Plantilla URBAN Crown 2",
-            },
+            { src: "carrousel-images/9.png", alt: "Plantilla URBAN Crown 1" },
+            { src: "carrousel-images/10.png", alt: "Plantilla URBAN Crown 2" },
           ],
         },
       ];
 
       const templateList = document.getElementById("template-list");
+      const beforeAfterPairs = Array.from({ length: 10 }, (_, index) => ({
+        before: `before/${index + 1}.png`,
+        after: `after/${index + 1}.png`,
+        altBefore: `Antes ${index + 1}`,
+        altAfter: `Después ${index + 1}`,
+      }));
       const videoSources = [
-        {
-          src: "video1.mp4",
-          alt: "Video inmobiliario 1",
-        },
-        {
-          src: "video2.mp4",
-          alt: "Video inmobiliario 2",
-        },
-        {
-          src: "video3.mp4",
-          alt: "Video inmobiliario 3",
-        },
-        {
-          src: "video4.mp4",
-          alt: "Video inmobiliario 4",
-        },
+        { src: "video1.mp4", alt: "Video inmobiliario 1" },
+        { src: "video2.mp4", alt: "Video inmobiliario 2" },
+        { src: "video3.mp4", alt: "Video inmobiliario 3" },
+        { src: "video4.mp4", alt: "Video inmobiliario 4" },
       ];
 
       function renderTemplateCarousels() {
@@ -1337,6 +1495,130 @@
         });
       }
 
+      function setComparePosition(compare, percent) {
+        const clamped = Math.max(0, Math.min(100, percent));
+        compare.dataset.position = clamped;
+        compare.querySelector(".before-after-overlay").style.clipPath =
+          `inset(0 ${100 - clamped}% 0 0)`;
+        compare.querySelector(".before-after-divider").style.left =
+          `${clamped}%`;
+        compare.querySelector(".before-after-handle").style.left =
+          `${clamped}%`;
+      }
+
+      function bindCompareSlider(compare) {
+        let isDragging = false;
+        let startX = 0;
+        let moved = false;
+
+        const updateFromClientX = (clientX) => {
+          const rect = compare.getBoundingClientRect();
+          const percent = ((clientX - rect.left) / rect.width) * 100;
+          setComparePosition(compare, percent);
+        };
+
+        setComparePosition(compare, 50);
+
+        compare.addEventListener("pointerdown", (e) => {
+          isDragging = true;
+          moved = false;
+          startX = e.clientX;
+          compare.dataset.justDragged = "false";
+          compare.setPointerCapture(e.pointerId);
+          updateFromClientX(e.clientX);
+        });
+
+        compare.addEventListener("pointermove", (e) => {
+          if (!isDragging) return;
+          if (Math.abs(e.clientX - startX) > 6) moved = true;
+          updateFromClientX(e.clientX);
+        });
+
+        compare.addEventListener("pointerup", () => {
+          if (moved) {
+            compare.dataset.justDragged = "true";
+            setTimeout(() => {
+              compare.dataset.justDragged = "false";
+            }, 50);
+          }
+          isDragging = false;
+        });
+
+        compare.addEventListener("pointercancel", () => {
+          isDragging = false;
+          compare.dataset.justDragged = "false";
+        });
+      }
+
+      function renderBeforeAfterCarousel() {
+        const track = document.getElementById("before-after-track");
+        const dots = document.getElementById("before-after-dots");
+        const prev = document.getElementById("before-after-prev");
+        const next = document.getElementById("before-after-next");
+        let currentIndex = 0;
+
+        track.innerHTML = beforeAfterPairs
+          .map(
+            (pair, index) => `
+        <div class="before-after-slide" data-before-after-index="${index}">
+          <div class="before-after-compare">
+            <div class="before-after-base">
+              <img src="${pair.before}" alt="${pair.altBefore}" />
+            </div>
+            <div class="before-after-overlay">
+              <img src="${pair.after}" alt="${pair.altAfter}" />
+            </div>
+            <div class="before-after-divider"></div>
+            <div class="before-after-handle" aria-hidden="true">
+              <svg viewBox="0 0 24 24"><polyline points="10 7 5 12 10 17"/><polyline points="14 7 19 12 14 17"/></svg>
+            </div>
+            <span class="before-after-label before">Before</span>
+            <span class="before-after-label after">After</span>
+          </div>
+        </div>
+      `,
+          )
+          .join("");
+
+        dots.innerHTML = beforeAfterPairs
+          .map(
+            (_, index) => `
+        <button class="before-after-dot ${index === 0 ? "active" : ""}" type="button" data-before-after-dot-index="${index}" aria-label="Ir a comparación ${index + 1}"></button>
+      `,
+          )
+          .join("");
+
+        const updateCarousel = () => {
+          track.style.transform = `translateX(-${currentIndex * 100}%)`;
+          dots.querySelectorAll(".before-after-dot").forEach((dot, index) => {
+            dot.classList.toggle("active", index === currentIndex);
+          });
+        };
+
+        prev.addEventListener("click", () => {
+          currentIndex =
+            (currentIndex - 1 + beforeAfterPairs.length) %
+            beforeAfterPairs.length;
+          updateCarousel();
+        });
+
+        next.addEventListener("click", () => {
+          currentIndex = (currentIndex + 1) % beforeAfterPairs.length;
+          updateCarousel();
+        });
+
+        dots.querySelectorAll(".before-after-dot").forEach((dot, index) => {
+          dot.addEventListener("click", () => {
+            currentIndex = index;
+            updateCarousel();
+          });
+        });
+
+        track
+          .querySelectorAll(".before-after-compare")
+          .forEach(bindCompareSlider);
+      }
+
       function renderVideoCarousel() {
         const videoTrack = document.getElementById("video-track");
         const videoDots = document.getElementById("video-dots");
@@ -1420,26 +1702,42 @@
       }
 
       renderTemplateCarousels();
+      renderBeforeAfterCarousel();
       renderVideoCarousel();
 
       const lightbox = document.getElementById("lightbox");
       const lightboxImg = document.getElementById("lightbox-img");
       const lightboxVideo = document.getElementById("lightbox-video");
       const lightboxClose = document.getElementById("lightbox-close");
+      const lightboxBeforeAfter = document.getElementById(
+        "lightbox-before-after",
+      );
+      const lightboxBeforeAfterCompare = document.getElementById(
+        "lightbox-before-after-compare",
+      );
+      const lightboxBeforeImg = document.getElementById("lightbox-before-img");
+      const lightboxAfterImg = document.getElementById("lightbox-after-img");
 
       let activeCarouselIndex = 0;
       let activeImageIndex = 0;
       let activeMediaType = "image";
+      let activeBeforeAfterIndex = 0;
       let touchStartX = 0;
       let touchEndX = 0;
+
+      function hideAllLightboxMedia() {
+        lightboxImg.style.display = "none";
+        lightboxVideo.style.display = "none";
+        lightboxBeforeAfter.classList.remove("active");
+      }
 
       function updateLightboxImage() {
         const activeImage =
           templateCarousels[activeCarouselIndex].images[activeImageIndex];
+        hideAllLightboxMedia();
         lightboxImg.src = activeImage.src;
         lightboxImg.alt = activeImage.alt;
         lightboxImg.style.display = "block";
-        lightboxVideo.style.display = "none";
         lightboxVideo.pause();
         lightboxVideo.removeAttribute("src");
         lightboxVideo.load();
@@ -1447,22 +1745,44 @@
 
       function updateLightboxVideo() {
         const activeVideo = videoSources[activeImageIndex];
+        hideAllLightboxMedia();
         lightboxVideo.src = activeVideo.src;
         lightboxVideo.style.display = "block";
-        lightboxImg.style.display = "none";
         lightboxVideo.load();
         lightboxVideo.play().catch(() => {});
+      }
+
+      function updateLightboxBeforeAfter() {
+        const pair = beforeAfterPairs[activeBeforeAfterIndex];
+        hideAllLightboxMedia();
+        lightboxBeforeImg.src = pair.before;
+        lightboxBeforeImg.alt = pair.altBefore;
+        lightboxAfterImg.src = pair.after;
+        lightboxAfterImg.alt = pair.altAfter;
+        lightboxBeforeAfter.classList.add("active");
+
+        requestAnimationFrame(() => {
+          setComparePosition(lightboxBeforeAfterCompare, 50);
+        });
+        lightboxVideo.pause();
+        lightboxVideo.removeAttribute("src");
+        lightboxVideo.load();
       }
 
       function openLightbox(carouselIndex, imageIndex, mediaType = "image") {
         activeCarouselIndex = carouselIndex;
         activeImageIndex = imageIndex;
         activeMediaType = mediaType;
+
         if (activeMediaType === "video") {
           updateLightboxVideo();
+        } else if (activeMediaType === "beforeAfter") {
+          activeBeforeAfterIndex = imageIndex;
+          updateLightboxBeforeAfter();
         } else {
           updateLightboxImage();
         }
+
         lightbox.classList.add("active");
       }
 
@@ -1471,6 +1791,13 @@
           activeImageIndex =
             (activeImageIndex - 1 + videoSources.length) % videoSources.length;
           updateLightboxVideo();
+          return;
+        }
+        if (activeMediaType === "beforeAfter") {
+          activeBeforeAfterIndex =
+            (activeBeforeAfterIndex - 1 + beforeAfterPairs.length) %
+            beforeAfterPairs.length;
+          updateLightboxBeforeAfter();
           return;
         }
         const images = templateCarousels[activeCarouselIndex].images;
@@ -1483,6 +1810,12 @@
         if (activeMediaType === "video") {
           activeImageIndex = (activeImageIndex + 1) % videoSources.length;
           updateLightboxVideo();
+          return;
+        }
+        if (activeMediaType === "beforeAfter") {
+          activeBeforeAfterIndex =
+            (activeBeforeAfterIndex + 1) % beforeAfterPairs.length;
+          updateLightboxBeforeAfter();
           return;
         }
         const images = templateCarousels[activeCarouselIndex].images;
@@ -1510,6 +1843,18 @@
           );
           const videoIndex = slides.indexOf(clickedVideo);
           openLightbox(0, videoIndex, "video");
+          return;
+        }
+
+        const clickedBeforeAfter = e.target.closest(".before-after-compare");
+        if (
+          clickedBeforeAfter &&
+          !clickedBeforeAfter.closest("#lightbox-before-after")
+        ) {
+          if (clickedBeforeAfter.dataset.justDragged === "true") return;
+          const slide = clickedBeforeAfter.closest(".before-after-slide");
+          const beforeAfterIndex = Number(slide.dataset.beforeAfterIndex);
+          openLightbox(0, beforeAfterIndex, "beforeAfter");
         }
       });
 
@@ -1518,16 +1863,13 @@
         lightboxVideo.pause();
         lightboxVideo.removeAttribute("src");
         lightboxVideo.load();
+        lightboxBeforeAfter.classList.remove("active");
       }
 
-      lightboxClose.addEventListener("click", () => {
-        closeLightbox();
-      });
+      lightboxClose.addEventListener("click", closeLightbox);
 
       lightbox.addEventListener("click", (e) => {
-        if (e.target === lightbox) {
-          closeLightbox();
-        }
+        if (e.target === lightbox) closeLightbox();
       });
 
       document.addEventListener("keydown", (e) => {
@@ -1548,6 +1890,8 @@
       lightbox.addEventListener(
         "touchend",
         (e) => {
+          if (activeMediaType !== "image" && activeMediaType !== "video")
+            return;
           touchEndX = e.changedTouches[0].clientX;
           const deltaX = touchEndX - touchStartX;
           if (Math.abs(deltaX) < 40) return;
@@ -1559,6 +1903,8 @@
         },
         { passive: true },
       );
+
+      bindCompareSlider(lightboxBeforeAfterCompare);
     </script>
   </body>
 </html>
